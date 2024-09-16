@@ -1,0 +1,70 @@
+# depslib dependency file v1.0
+1581001948 source:c:\users\robert\desktop\pw_manager\classes.cpp
+	<time.h>
+	<fstream>
+	<shlobj.h>
+	<tchar.h>
+	"Classes.h"
+
+1581001862 c:\users\robert\desktop\pw_manager\classes.h
+	<iostream>
+	<complex>
+	<Windows.h>
+	<winuser.h>
+
+1580995887 source:c:\users\robert\desktop\pw_manager\main.cpp
+	"Classes.h"
+
+1580670079 source:c:\users\robert\desktop\pw_manager - kopie\main.cpp
+	"Classes.h"
+
+1580670864 c:\users\robert\desktop\pw_manager - kopie\classes.h
+	<iostream>
+	<sstream>
+	<stdio.h>
+	<stdlib.h>
+	<cstdlib>
+	<string.h>
+	<time.h>
+	<fstream>
+	<cmath>
+	<iomanip>
+	<complex>
+	<Windows.h>
+	<winuser.h>
+	<conio.h>
+
+1580670829 source:c:\users\robert\desktop\pw_manager - kopie\classes.cpp
+	"Classes.h"
+
+1603374562 source:c:\users\robert\desktop\projects\c++\pw_manager\classes.cpp
+	<time.h>
+	<fstream>
+	<shlobj.h>
+	<tchar.h>
+	"Classes.h"
+
+1587411684 c:\users\robert\desktop\projects\c++\pw_manager\classes.h
+	<iostream>
+	<complex>
+	<Windows.h>
+	<winuser.h>
+	<Lmcons.h>
+
+1603550554 source:c:\users\robert\desktop\projects\c++\pw_manager\main.cpp
+	"Classes.h"
+
+1615296810 source:c:\users\robert\desktop\ides\c++\projects\pw_manager\classes.cpp
+	<time.h>
+	<fstream>
+	<shlobj.h>
+	<tchar.h>
+	"Classes.h"
+
+1587408084 c:\users\robert\desktop\ides\c++\projects\pw_manager\classes.h
+	<iostream>
+	<complex>
+	<Windows.h>
+	<winuser.h>
+	<Lmcons.h>
+
