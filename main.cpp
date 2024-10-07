@@ -37,20 +37,20 @@ int main()
     string website, KEY;
 
     pw->txtOutput(hConsole, 14, true, " __________________________________________________ ");
-    pw->txtOutput(hConsole, 14, true, "| Version 1.5 @ Robert Schmidt                     |");
+    pw->txtOutput(hConsole, 14, true, "| Version 1.0 @ HARSHIT PANDEY                     |");
 
     while (true) {
         List* liste = files->file_Load();
         liste->quickSort(0, liste->getMax());
 
         pw->txtOutput(hConsole, 15, true, " __________________________________________________ ");
-        pw->txtOutput(hConsole, 15, true, "|                   HAUPTMENUE:                    |");
-        pw->txtOutput(hConsole, 15, true, "| (1) Vorhandenes Passwort entschluesseln          |");
-        pw->txtOutput(hConsole, 15, true, "| (2) Neues Passwort generieren und verschluesseln |");
-        pw->txtOutput(hConsole, 15, true, "| (3) Eigenes Passwort hinzufuegen                 |");
-        pw->txtOutput(hConsole, 15, true, "| (4) Alle verschluesselten Passwoerter ausgeben   |");
-        pw->txtOutput(hConsole, 15, true, "| (5) Vorhandenes Passwort loeschen                |");
-        pw->txtOutput(hConsole, 15, true, "| (6) Beenden                                      |");
+        pw->txtOutput(hConsole, 15, true, "|                   MAIN MENU                      |");
+        pw->txtOutput(hConsole, 15, true, "| (1) Decrypt existing password                    |");
+        pw->txtOutput(hConsole, 15, true, "| (2) Generate and encrypt new password            |");
+        pw->txtOutput(hConsole, 15, true, "| (3) Add your own password                        |");
+        pw->txtOutput(hConsole, 15, true, "| (4) Output all encrypted passwords               |");
+        pw->txtOutput(hConsole, 15, true, "| (5) Delete existing password                     |");
+        pw->txtOutput(hConsole, 15, true, "| (6) finish                                       |");
         pw->txtOutput(hConsole, 15, true, "|__________________________________________________|");
 
         pw->txtOutput(hConsole, 2, false, "=> ");
@@ -61,7 +61,7 @@ int main()
                 cin >> input;
             }
         } else {
-            cout << "Fehler; Bitte bedienen Sie das Menue mit entsprechenden Zahleingaben!" << endl;
+            cout << "Mistake; Please use the menu with appropriate payment entries!" << endl;
             cin.clear();
             cin.sync();
         }
@@ -70,28 +70,28 @@ int main()
         case 1:
             {
                 cin.ignore();
-                cout << "Geben Sie den Namen der Website ein, dessen Passwort Sie benoetigen." << endl;
+                cout << "Enter the name of the website whose password you need." << endl;
 
                 do {
                     pw->txtOutput(hConsole, 2, false, "=> ");
                     getline(cin, website);
 
                     if (website.size() < 3) {
-                        cout << "Fehler; Name der Website ist zu kurz. Versuchen Sie es erneut." << endl;
+                        cout << "Mistake; Website name is too short. Try again." << endl;
                     }
                 } while(website.size() < 3);
 
                 if (liste->suche(website) == -1) {
-                    cout << "Fehler; Website konnte nicht gefunden werden! Kehre zum Menue zurueck..." << endl;
+                    cout << "Mistake; Website could not be found! Return to menu..." << endl;
                 } else {
                     bool loop = true;
-                    cout << "Geben Sie Ihren 3-stelligen Key aus Grossbuchstaben zur Entschluesselung ein." << endl;
+                    cout << "Enter your 3-digit key in capital letters for decryption." << endl;
                         do {
                             pw->txtOutput(hConsole, 2, false, "=> ");
                             getline(cin, KEY);
 
                             if (KEY.size() != 3) {
-                                cout << "Fehler; Ungueltige Schluessellaenge! Bitte versuchen Sie es erneut." << endl;
+                                cout << "Mistake; Invalid key length! Please try again." << endl;
                             } else {
                                 loop = false;
 
@@ -99,7 +99,7 @@ int main()
                                     int check_n = KEY[i];
 
                                     if (check_n < 65 || check_n > 90) {
-                                        cout << "Fehler; Ungueltiges Schluesselformat! Bitte versuchen Sie es erneut." << endl;
+                                        cout << "Mistake; Invalid key format! Please try again." << endl;
                                         loop = true;
                                         break;
                                     }
@@ -109,7 +109,7 @@ int main()
 
                     output = pw->decryption(liste->getIndexPassword(liste->suche(website)), liste->getIndexWebsite(liste->suche(website)), KEY);
 
-                    cout << "Ihr entschluesseltes Passwort (Key: " << KEY << ") lautet: ";
+                    cout << "Your decrypted password (Key: " << KEY << ") is:";
                     pw->txtOutput(hConsole, 11, true, string(output));
 
                     toClipboard(hwnd, (string) output);
@@ -122,26 +122,26 @@ int main()
         case 2:
             {
                 cin.ignore();
-                cout << "Geben Sie den Namen der Website ein, fuer die Sie ein Passwort generieren moechten." << endl;
+                cout << "Enter the name of the website you want to generate a password for." << endl;
 
                 do {
                     pw->txtOutput(hConsole, 2, false, "=> ");
                     getline(cin, website);
 
                     if (website.size() < 3) {
-                        cout << "Fehler; Name der Website ist zu kurz. Versuchen Sie es erneut." << endl;
+                        cout << "Mistake; Website name is too short. Try again." << endl;
                     }
                 } while(website.size() < 3);
 
                 if (liste->suche(website) != -1) {
-                    cout << "Fehler; Website existiert bereits! Kehre zum Menue zurueck..." << endl;
+                    cout << "Mistake; Website already exists! Return to menu..." << endl;
                 } else {
                     do {
                         pw = new Password_Setup(website);
 
                         cout << endl;
                         cout << pw->getPassword() << endl;
-                        cout << "Sind Sie zufrieden mit diesem generierten Passwort? (Akzeptieren mit '1'; Ablehnen mit Sonstigem)" << endl;
+                        cout << "Are you happy with this generated password? (Accept with '1'; reject with other)" << endl;
 
                         pw->txtOutput(hConsole, 2, false, "=> ");
 
@@ -154,14 +154,14 @@ int main()
                     } while (confirm != 1);
 
                     cin.ignore();
-                    cout << "Geben Sie einen 3-stelligen Key aus Grossbuchstaben zur Verschluesselung ein." << endl;
+                    cout << "Enter a 3-digit key made of capital letters for encryption." << endl;
 
                     do {
                         pw->txtOutput(hConsole, 2, false, "=> ");
                         getline(cin, KEY);
 
                         if (KEY.size() != 3) {
-                            cout << "Fehler; Ungueltige Schluessellaenge! Bitte versuchen Sie es erneut." << endl;
+                            cout << "Mistake; Invalid key length! Please try again." << endl;
                         } else {
                             int i;
 
@@ -169,7 +169,7 @@ int main()
                                 int check_n = KEY[i];
 
                                 if (check_n < 65 || check_n > 90) {
-                                    cout << "Fehler; Ungueltiges Schluesselformat! Bitte versuchen Sie es erneut." << endl;
+                                    cout << "Mistake; Invalid key format! Please try again." << endl;
                                     break;
                                 }
                             }
@@ -182,7 +182,7 @@ int main()
 
                     char* encrypted = pw->encryption(KEY);
 
-                    cout << "Ihr verschluesseltes Passwort (KEY: " << KEY << ") lautet: ";
+                    cout << "Your encrypted password (KEY: " << KEY << ") is:";
                     pw->txtOutput(hConsole, 11, true, string(encrypted));
 
                     files->file_Save(website, encrypted, liste);
@@ -198,28 +198,28 @@ int main()
                 string passw = "";
 
                 cin.ignore();
-                cout << "Geben Sie den Namen der Website ein, fuer die Sie ein Passwort hinzufuegen moechten." << endl;
+                cout << "Enter the name of the website you want to add a password for." << endl;
 
                 do {
                     pw->txtOutput(hConsole, 2, false, "=> ");
                     getline(cin, website);
 
                     if (website.size() < 3) {
-                        cout << "Fehler; Name der Website ist zu kurz. Versuchen Sie es erneut." << endl;
+                        cout << "Mistake; Website name is too short. Try again." << endl;
                     }
                 } while(website.size() < 3);
 
                 if (liste->suche(website) != -1) {
-                        cout << "Fehler; Website existiert bereits! Kehre zum Menue zurueck..." << endl;
+                        cout << "Mistake; Website already exists! Return to menu..." << endl;
                 } else {
-                    cout << "Geben Sie ein standardmaessiges Passwort ein, um es zu verschluesseln und zu speichern." << endl;
-                    cout << "Formate: (AAAAAAA$111), (111$AAAAAAA), (AAAAAAA111$)" << endl;
+                    cout << "Enter a standard password to encrypt and save it." << endl;
+                    cout << "Formats: (AAAAAAAA$111), (111$AAAAAAAA), (AAAAAAAA111$)" << endl;
 
                     pw->txtOutput(hConsole, 2, false, "=> ");
                     getline(cin, passw);
 
                     if (passw.size() != 11) {
-                        cout << "Fehler; Passwort muss 11 Zeichen lang sein. Beachten Sie das Format! Kehre zum Menue zurueck..." << endl;
+                        cout << "Mistake; Password must be 11 characters long. Note the format! Return to menu..." << endl;
                         break;
                     } else {
                         char* website_Upper = pw->toUpperCase(website);
@@ -232,14 +232,14 @@ int main()
 
                         if (custom_pw->identification()) {
 
-                            cout << "Geben Sie einen 3-stelligen Key aus Grossbuchstaben zur Verschluesselung ein." << endl;
+                            cout << "Enter a 3-digit key made of capital letters for encryption." << endl;
 
                             do {
                                 pw->txtOutput(hConsole, 2, false, "=> ");
                                 getline(cin, KEY);
 
                                 if (KEY.size() != 3) {
-                                    cout << "Fehler; Ungueltige Schluessellaenge! Bitte versuchen Sie es erneut." << endl;
+                                    cout << "Mistake; Invalid key length! Please try again." << endl;
                                 } else {
                                     int i;
 
@@ -247,7 +247,7 @@ int main()
                                         int check_n = KEY[i];
 
                                         if (check_n < 65 || check_n > 90) {
-                                            cout << "Fehler; Ungueltiges Schluesselformat! Bitte versuchen Sie es erneut." << endl;
+                                            cout << "Mistake; Invalid key format! Please try again." << endl;
                                             break;
                                         }
                                     }
@@ -260,12 +260,12 @@ int main()
 
                         char* encrypted = custom_pw->encryption(KEY);
 
-                        cout << "Ihr verschluesseltes Passwort (KEY: " << KEY << ") lautet: ";
+                        cout << "Your encrypted password (KEY: " << KEY << ") is: ";
                         pw->txtOutput(hConsole, 11, true, string(encrypted));
 
                         files->file_Save(website, encrypted, liste);
                     } else {
-                        cout << "Fehler; Format wurde nicht korrekt eingegeben. Kehre zum Menue zurueck..." << endl;
+                        cout << "Mistake; Format was not entered correctly. Return to menu..." << endl;
                     }
                 }
             }
@@ -285,18 +285,18 @@ int main()
                     int pin = 0;
                     ostringstream ostr;
 
-                    cout << "Bitte erstellen Sie eine Administrator-PIN aus vier Ziffern." << endl;
+                    cout << "Please create a four-digit administrator PIN." << endl;
 
                     do {
                         pw->txtOutput(hConsole, 2, false, "=> ");
                         cin >> pin;
 
                         if (cin.fail()) {
-                            cout << "Fehler; PIN darf nur aus Ziffern bestehen! Versuchen Sie es erneut." << endl;
+                            cout << "Mistake; PIN may only consist of numbers! Try again." << endl;
                             cin.clear();
                             cin.sync();
                         } else if (pin > 9999 || pin < 1000) {
-                            cout << "Fehler; PIN muss aus genau vier Ziffern bestehen. Versuchen Sie es erneut." << endl;
+                            cout << "Mistake; PIN must consist of exactly four digits. Try again." << endl;
                         }
                     } while(pin > 9999 || pin < 1000);
 
@@ -309,7 +309,7 @@ int main()
 
                     files->file_Save(".W", ad_pin, liste);
 
-                    cout << "Administrator-PIN erfolgreich gesetzt! Kehre zum Menue zurueck..." << endl;
+                    cout << "Administrator PIN set successfully! Return to menu..." << endl;
                     break;
                 } else {
                     string pin = "";
@@ -317,16 +317,16 @@ int main()
                     ad_pin = liste->getIndexPassword(stelle);
 
                     cin.ignore();
-                    cout << "Bitte geben Sie Ihre Administrator-PIN ein." << endl;
+                    cout << "Please enter your administrator PIN." << endl;
 
                     do {
                         pw->txtOutput(hConsole, 2, false, "=> ");
                         cin >> pin;
 
                         if (pin.size() != 4) {
-                            cout << "Fehler; PIN muss aus vier Ziffern bestehen. Versuchen Sie es erneut." << endl;
+                            cout << "Mistake; PIN must consist of four digits. Try again." << endl;
                         } else if (pin != ad_pin) {
-                            cout << "Fehler; Inkorrekte PIN wurde eingegeben. Kehre zum Menue zurueck..." << endl;
+                            cout << "Mistake; Incorrect PIN was entered. Return to menu..." << endl;
                             break_bool = true;
                         }
                     } while(pin.size() != 4);
@@ -335,19 +335,19 @@ int main()
                         break;
                     } else {
                         cin.ignore();
-                        cout << "Geben Sie den Namen der Website ein, dessen Passwort Sie loeschen moechten." << endl;
+                        cout << "Enter the name of the website whose password you want to delete." << endl;
 
                         do {
                             pw->txtOutput(hConsole, 2, false, "=> ");
                             getline(cin, website);
 
                             if (website.size() < 3) {
-                                cout << "Fehler; Name der Website ist zu kurz. Versuchen Sie es erneut." << endl;
+                                cout << "Mistake; Website name is too short. Try again." << endl;
                             }
                         } while(website.size() < 3);
 
                         if (liste->suche(website) == -1) {
-                            cout << "Fehler; Website konnte nicht gefunden werden! Kehre zum Menue zurueck..." << endl;
+                            cout << "Mistake; Website could not be found! Return to menu..." << endl;
                         } else {
                             liste->loeschen(liste->suche(website), files->getFILE_PATH());
                         }
