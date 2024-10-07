@@ -11,6 +11,6 @@ User can direct through a menu:
 5) **Delete existing password**: Asks user to create admin pin. If user enters admin pin, asks him for website and allows him to delete existant password.
 6) **Exit**: Quit program.
 
-**Currently supported languages**: German
+**Currently supported languages**: English
 
-@Version 1.5 by Robert Schmidt
+@Version 1.0 HARSHIT PANDEY
